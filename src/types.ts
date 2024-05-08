@@ -6,10 +6,3 @@ export interface Photo {
      regular: string;
    };
  }
- 
- 
-  export interface PhotoData {
-   total: number;
-   total_pages: number;
-   results: Photo[];
- }
