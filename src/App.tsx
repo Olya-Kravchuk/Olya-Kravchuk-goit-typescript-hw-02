@@ -79,7 +79,7 @@ const App = () => {
   };
 
   const closeModal = () => {
-    setSelectedPhoto(null);
+    setSelectedPhoto(undefined);
   };
 
   const onScrollBtn = () => {
