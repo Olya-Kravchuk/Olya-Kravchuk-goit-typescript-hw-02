@@ -40,7 +40,10 @@ const App = () => {
       try {
         setLoading(true);
         setError(false);
-        const data = await getPhotos(query, page);
+        const data = await getPhotos<{
+          total_pages: number;
+          results: Photo[];
+        }>(query, page);
         setPhotos(prevPhotos => {
           if (Array.isArray(prevPhotos)) {
             return [...prevPhotos, ...data.results];

@@ -4,7 +4,7 @@ import { Photo } from "../../types";
 
 interface ImageCardProps {
   photo: Photo;
-  openModal: MouseEventHandler<HTMLImageElement>;
+  onClick: MouseEventHandler<HTMLImageElement>;
 }
 
 const ImageCard: FC<ImageCardProps> = ({photo, onClick }) => {
