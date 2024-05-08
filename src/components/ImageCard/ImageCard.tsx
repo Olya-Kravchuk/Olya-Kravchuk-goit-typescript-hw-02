@@ -14,7 +14,7 @@ const ImageCard: FC<ImageCardProps> = ({photo, onClick }) => {
 
   return (
       <div className={css.container}>
-          <img src={photo.urls.small} alt={photo.alt_description} onClick={handleClick}/>
+          <img className={css.img} src={photo.urls.small} alt={photo.alt_description} onClick={handleClick}/>
       </div>
   )
 }

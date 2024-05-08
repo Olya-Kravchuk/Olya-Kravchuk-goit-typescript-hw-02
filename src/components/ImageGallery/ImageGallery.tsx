@@ -10,9 +10,9 @@ interface ImageGalleryProps {
 
 const ImageGallery: FC<ImageGalleryProps> = ({ photos, handleImageClick }) => {
   return (
-    <ul>
+    <ul className={css.ul}>
       {photos.map((photo, index) => (
-        <li key={photo.id}>
+        <li className={css.li} key={photo.id}>
           <ImageCard photo={photo} onClick={() => handleImageClick(photo)} />
         </li>
       ))}
