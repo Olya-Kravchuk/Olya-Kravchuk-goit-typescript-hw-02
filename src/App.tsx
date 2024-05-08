@@ -18,7 +18,7 @@ const App = () => {
   const [error, setError] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | undefined>(undefined);
   const [scrollBtn, setScrollBtn] = useState<boolean>(false);
 
   useEffect(() => {
