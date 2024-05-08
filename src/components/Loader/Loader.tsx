@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 import { RotatingLines } from "react-loader-spinner";
-const Loader = () => {
+const Loader: FC = () => {
   return (
     <div>
       <RotatingLines

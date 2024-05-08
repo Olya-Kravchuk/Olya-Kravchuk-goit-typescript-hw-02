@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Loader from "./components/Loader/Loader";
@@ -8,19 +8,18 @@ import { getPhotos } from "./service/api";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import { ImageModal } from "./components/ImageModal/ImageModal";
 import ScrollUp from "./components/ScrollUp/ScrollUp";
-import ScrollIntoView from 'react-scroll-into-view'
-import axios from 'axios';
+import ScrollIntoView from 'react-scroll-into-view';
+import { Photo } from "./types";
 
 const App = () => {
-  const [photos, setPhotos] = useState(null);
-  const [query, setQuery] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [scrollBtn, setScrollBtn] = useState(false);
-  // const lastImageRef = useRef(null);
+  const [photos, setPhotos] = useState<Photo[] | null>(null);
+  const [query, setQuery] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [scrollBtn, setScrollBtn] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,10 +56,9 @@ const App = () => {
       }
     }
     handleSearch();
-    // scrollToLastImage();
   }, [query, page]);
 
-  const handleQuery = (newQuery) => {
+  const handleQuery = (newQuery: string) => {
     if (newQuery !== query) {
       setQuery(newQuery);
       setPhotos(null);
@@ -69,18 +67,11 @@ const App = () => {
     }
   };
 
-  // const scrollToLastImage = () => {
-  //   if (lastImageRef.current) {
-  //     lastImageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  //   }
-  // };
-
   const loadMorePhotos = () => {
     setPage(prevPage => prevPage + 1);
-    // setScrollBtn(true);
   };
 
-  const openModal = photo => {
+  const openModal = (photo: Photo) => {
     setSelectedPhoto(photo);
   };
 
@@ -89,7 +80,7 @@ const App = () => {
   };
 
   const onScrollBtn = () => {
-    setScrollBtn(false)
+    setScrollBtn(false);
   };
 
   return (
@@ -98,7 +89,7 @@ const App = () => {
       {loading && <Loader />}
       {error && <ErrorMessage />}
       {photos !== null && (
-        <ImageGallery photos={photos} handleImageClick={openModal} /*lastImageRef={lastImageRef}*/ />
+        <ImageGallery photos={photos} handleImageClick={openModal} />
       )}
       {totalPages > page && <LoadMoreBtn loadMorePhotos={loadMorePhotos} />}
       <ImageModal isOpen={!!selectedPhoto} photo={selectedPhoto} onRequestClose={closeModal} />

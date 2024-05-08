@@ -1,6 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 
-const ErrorMessage = ({
+interface ErrorMessageProps {
+  message?: string;
+}
+const ErrorMessage: FC<ErrorMessageProps> = ({
   message = "Oops, something went wrong, please reload the page!😢",
 }) => {
   return <p>{message}</p>;
